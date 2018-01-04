@@ -1,24 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vcP-Mq-kXl">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Menlo.ttc">
+            <string>Menlo-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="fbg-qP-MsC">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="vcP-Mq-kXl" customClass="ViewController" customModule="ArtPixel" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="T8i-dj-77i">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3GZ-qT-swj">
+                                <rect key="frame" x="20" y="20" width="45" height="30"/>
+                                <state key="normal" title="Kermit">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleKermitTapped:" destination="vcP-Mq-kXl" eventType="touchUpInside" id="r3V-0p-au4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ca9-1o-cbU" userLabel="Batman">
+                                <rect key="frame" x="81" y="20" width="53" height="30"/>
+                                <state key="normal" title="Batman">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleBatmanTapped:" destination="vcP-Mq-kXl" eventType="touchUpInside" id="hBU-lM-DDD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhN-q1-L8D">
+                                <rect key="frame" x="150" y="20" width="54" height="30"/>
+                                <state key="normal" title="Monkey">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleMonkeyTapped:" destination="vcP-Mq-kXl" eventType="touchUpInside" id="xoY-Ai-Xgh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O00-aQ-CbH">
+                                <rect key="frame" x="280" y="20" width="75" height="30"/>
+                                <state key="normal" title="Pick Image">
+                                    <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="handlePickImageTapped:" destination="vcP-Mq-kXl" eventType="touchUpInside" id="QcV-4D-Xup"/>
+                                </connections>
+                            </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bws-gz-WSt">
+                                <rect key="frame" x="0.0" y="50" width="375" height="617"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </scrollView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ml-Iq-ffT" userLabel="Busy View">
+                                <rect key="frame" x="-4" y="20" width="383" height="647"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="gIx-Zj-LfQ">
+                                        <rect key="frame" x="181.5" y="313.5" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hold on…" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kaa-Rn-93R">
+                                        <rect key="frame" x="157.5" y="341.5" width="68" height="18"/>
+                                        <fontDescription key="fontDescription" name="Menlo-Bold" family="Menlo" pointSize="14"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                        <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.68999999999999995" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="kaa-Rn-93R" secondAttribute="centerX" id="B1y-vb-AgM"/>
+                                    <constraint firstAttribute="centerY" secondItem="gIx-Zj-LfQ" secondAttribute="centerY" id="Bgk-8S-rcV"/>
+                                    <constraint firstAttribute="centerX" secondItem="gIx-Zj-LfQ" secondAttribute="centerX" id="FWp-uP-Hrs"/>
+                                    <constraint firstItem="kaa-Rn-93R" firstAttribute="top" secondItem="gIx-Zj-LfQ" secondAttribute="bottom" constant="8" id="Rxq-dB-LM6"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.75559091570000003" green="0.75556838510000002" blue="0.75558114050000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Bws-gz-WSt" firstAttribute="leading" secondItem="T8i-dj-77i" secondAttribute="leadingMargin" constant="-16" id="1Zu-6J-lzT"/>
+                            <constraint firstItem="O00-aQ-CbH" firstAttribute="leading" secondItem="dhN-q1-L8D" secondAttribute="trailing" constant="50" id="1gh-x7-Xbc"/>
+                            <constraint firstItem="6ml-Iq-ffT" firstAttribute="top" secondItem="T8i-dj-77i" secondAttribute="topMargin" id="3kw-na-yxd"/>
+                            <constraint firstItem="QCD-wr-fWf" firstAttribute="bottom" secondItem="Bws-gz-WSt" secondAttribute="bottom" id="8yp-n5-6hT"/>
+                            <constraint firstItem="Bws-gz-WSt" firstAttribute="top" secondItem="O00-aQ-CbH" secondAttribute="bottom" id="9Io-B5-VuA"/>
+                            <constraint firstItem="3GZ-qT-swj" firstAttribute="top" secondItem="QCD-wr-fWf" secondAttribute="top" id="KxR-t1-fu7"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="6ml-Iq-ffT" secondAttribute="trailing" constant="-20" id="Lh7-Zh-lik"/>
+                            <constraint firstItem="ca9-1o-cbU" firstAttribute="top" secondItem="QCD-wr-fWf" secondAttribute="top" id="Mdm-tX-hdW"/>
+                            <constraint firstItem="6ml-Iq-ffT" firstAttribute="leading" secondItem="T8i-dj-77i" secondAttribute="leadingMargin" constant="-20" id="Q93-1j-E97"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Bws-gz-WSt" secondAttribute="trailing" constant="-16" id="SkF-X9-RgV"/>
+                            <constraint firstItem="O00-aQ-CbH" firstAttribute="top" secondItem="QCD-wr-fWf" secondAttribute="top" id="VKL-Pi-yAv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="O00-aQ-CbH" secondAttribute="trailing" constant="4" id="Zaz-gc-JK7"/>
+                            <constraint firstItem="dhN-q1-L8D" firstAttribute="leading" secondItem="ca9-1o-cbU" secondAttribute="trailing" constant="16" id="foU-LV-Aop"/>
+                            <constraint firstItem="dhN-q1-L8D" firstAttribute="top" secondItem="QCD-wr-fWf" secondAttribute="top" id="j3y-IU-N66"/>
+                            <constraint firstItem="3GZ-qT-swj" firstAttribute="leading" secondItem="T8i-dj-77i" secondAttribute="leadingMargin" constant="4" id="m1i-BV-Kff"/>
+                            <constraint firstItem="ca9-1o-cbU" firstAttribute="leading" secondItem="3GZ-qT-swj" secondAttribute="trailing" constant="16" id="rkW-fa-MBK"/>
+                            <constraint firstItem="QCD-wr-fWf" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dhN-q1-L8D" secondAttribute="trailing" constant="20" symbolic="YES" id="sTI-86-tkt"/>
+                            <constraint firstItem="O00-aQ-CbH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="T8i-dj-77i" secondAttribute="leadingMargin" id="tza-2o-t4m"/>
+                            <constraint firstItem="QCD-wr-fWf" firstAttribute="bottom" secondItem="6ml-Iq-ffT" secondAttribute="bottom" id="xYE-OR-gRL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QCD-wr-fWf"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="1gh-x7-Xbc"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="busyView" destination="6ml-Iq-ffT" id="c47-UI-dc8"/>
+                        <outlet property="scrollView" destination="Bws-gz-WSt" id="nFc-tl-9RO"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fXP-wY-Dto" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="178" y="145"/>
         </scene>
     </scenes>
 </document>

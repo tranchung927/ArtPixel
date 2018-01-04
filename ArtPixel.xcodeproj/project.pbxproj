@@ -12,6 +12,13 @@
 		54F4C6D91FFE6B4B00F1511A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54F4C6D71FFE6B4B00F1511A /* Main.storyboard */; };
 		54F4C6DB1FFE6B4B00F1511A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54F4C6DA1FFE6B4B00F1511A /* Assets.xcassets */; };
 		54F4C6DE1FFE6B4B00F1511A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54F4C6DC1FFE6B4B00F1511A /* LaunchScreen.storyboard */; };
+		54F4C6E61FFE6B6600F1511A /* AsciiArtist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F4C6E51FFE6B6600F1511A /* AsciiArtist.swift */; };
+		54F4C6E81FFE6B8300F1511A /* AsciiPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F4C6E71FFE6B8300F1511A /* AsciiPalette.swift */; };
+		54F4C6EA1FFE6B9900F1511A /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F4C6E91FFE6B9900F1511A /* Pixel.swift */; };
+		54F4C6EC1FFE6BB800F1511A /* UIImage+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F4C6EB1FFE6BB800F1511A /* UIImage+Util.swift */; };
+		54F4C6F11FFE6C0100F1511A /* kermit.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F4C6EE1FFE6C0100F1511A /* kermit.png */; };
+		54F4C6F21FFE6C0100F1511A /* monkey.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F4C6EF1FFE6C0100F1511A /* monkey.png */; };
+		54F4C6F31FFE6C0100F1511A /* batman.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F4C6F01FFE6C0100F1511A /* batman.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +29,13 @@
 		54F4C6DA1FFE6B4B00F1511A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54F4C6DD1FFE6B4B00F1511A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		54F4C6DF1FFE6B4B00F1511A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		54F4C6E51FFE6B6600F1511A /* AsciiArtist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsciiArtist.swift; sourceTree = "<group>"; };
+		54F4C6E71FFE6B8300F1511A /* AsciiPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsciiPalette.swift; sourceTree = "<group>"; };
+		54F4C6E91FFE6B9900F1511A /* Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
+		54F4C6EB1FFE6BB800F1511A /* UIImage+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Util.swift"; sourceTree = "<group>"; };
+		54F4C6EE1FFE6C0100F1511A /* kermit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kermit.png; sourceTree = "<group>"; };
+		54F4C6EF1FFE6C0100F1511A /* monkey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = monkey.png; sourceTree = "<group>"; };
+		54F4C6F01FFE6C0100F1511A /* batman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batman.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +68,29 @@
 		54F4C6D21FFE6B4B00F1511A /* ArtPixel */ = {
 			isa = PBXGroup;
 			children = (
+				54F4C6ED1FFE6BE700F1511A /* images */,
 				54F4C6D31FFE6B4B00F1511A /* AppDelegate.swift */,
 				54F4C6D51FFE6B4B00F1511A /* ViewController.swift */,
+				54F4C6E51FFE6B6600F1511A /* AsciiArtist.swift */,
+				54F4C6E71FFE6B8300F1511A /* AsciiPalette.swift */,
+				54F4C6E91FFE6B9900F1511A /* Pixel.swift */,
+				54F4C6EB1FFE6BB800F1511A /* UIImage+Util.swift */,
 				54F4C6D71FFE6B4B00F1511A /* Main.storyboard */,
 				54F4C6DA1FFE6B4B00F1511A /* Assets.xcassets */,
 				54F4C6DC1FFE6B4B00F1511A /* LaunchScreen.storyboard */,
 				54F4C6DF1FFE6B4B00F1511A /* Info.plist */,
 			);
 			path = ArtPixel;
+			sourceTree = "<group>";
+		};
+		54F4C6ED1FFE6BE700F1511A /* images */ = {
+			isa = PBXGroup;
+			children = (
+				54F4C6F01FFE6C0100F1511A /* batman.png */,
+				54F4C6EE1FFE6C0100F1511A /* kermit.png */,
+				54F4C6EF1FFE6C0100F1511A /* monkey.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,6 +153,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				54F4C6DE1FFE6B4B00F1511A /* LaunchScreen.storyboard in Resources */,
+				54F4C6F11FFE6C0100F1511A /* kermit.png in Resources */,
+				54F4C6F31FFE6C0100F1511A /* batman.png in Resources */,
+				54F4C6F21FFE6C0100F1511A /* monkey.png in Resources */,
 				54F4C6DB1FFE6B4B00F1511A /* Assets.xcassets in Resources */,
 				54F4C6D91FFE6B4B00F1511A /* Main.storyboard in Resources */,
 			);
@@ -136,8 +168,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54F4C6E61FFE6B6600F1511A /* AsciiArtist.swift in Sources */,
+				54F4C6E81FFE6B8300F1511A /* AsciiPalette.swift in Sources */,
+				54F4C6EA1FFE6B9900F1511A /* Pixel.swift in Sources */,
 				54F4C6D61FFE6B4B00F1511A /* ViewController.swift in Sources */,
 				54F4C6D41FFE6B4B00F1511A /* AppDelegate.swift in Sources */,
+				54F4C6EC1FFE6BB800F1511A /* UIImage+Util.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
