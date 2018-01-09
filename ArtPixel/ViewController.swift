@@ -12,15 +12,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     fileprivate let labelFont = UIFont(name: "Menlo", size: 7)!
     fileprivate let maxImageSize = CGSize(width: 300, height: 300)
     fileprivate lazy var palette: AsciiPalette = AsciiPalette(font: self.labelFont)
-    var itemWidth: CGFloat = 0
-    var itemHeight: CGFloat = 0
-    var width: CGFloat = 0
-    var height: CGFloat = 0
-    fileprivate var currentLabel: UILabel?
+    fileprivate var currentView: Canvas?
     @IBOutlet weak var busyView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     
-    var pixels = Array<Array<UIView>>()
+    var pixels = Array<Array<UILabel>>()
     
     // MARK: - Setup
     
@@ -66,8 +62,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: - Rendering
     
     fileprivate func displayImageNamed(_ imageName: String) {
-        let image = UIImage(named: imageName)!.cropIfNeed(aspectFillToSize: maxImageSize)
-        displayImage(image!)
+        let image = UIImage(named: imageName)!
+        displayImage(image)
     }
     
     fileprivate func displayImage(_ image: UIImage) {
@@ -78,80 +74,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             rotatedImage = image.imageRotatedToPortraitOrientation(),
             resizedImage = rotatedImage.imageConstrainedToMaxSize(self.maxImageSize),
             asciiArtist  = AsciiArtist(resizedImage, self.palette),
-            asciiArt     = asciiArtist.createAsciiArt()
+            symbolsMatix = asciiArtist.createAsciiArt()
             
             DispatchQueue.main.async {
-                self.displayAsciiArt(asciiArt, matrix: asciiArtist.matrix)
+                self.displayAsciiArt(symbolsMatix)
                 self.busyView.isHidden = true
             }
         }
     }
     
-    fileprivate func displayAsciiArt(_ asciiArt: String, matrix: [[Double]]) {
-        let label = UILabel()
-        label.font = self.labelFont
-        label.lineBreakMode = NSLineBreakMode.byClipping
-        label.numberOfLines = 0
-        label.text = asciiArt
-        label.sizeToFit()
-//        print(asciiArt)
-        currentLabel?.removeFromSuperview()
-        currentLabel = label
-        label.isUserInteractionEnabled = true
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(sender:)))
-        tapGestureRecognizer.delegate = self
-        label.addGestureRecognizer(tapGestureRecognizer)
-        let dragGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handleDrag(sender:)))
-        dragGestureRecognizer.minimumPressDuration = 0.25
-        label.addGestureRecognizer(dragGestureRecognizer)
-        scrollView.addSubview(label)
-        scrollView.contentSize = label.frame.size
-        
-        self.updateZoomSettings(animated: false)
-        scrollView.contentOffset = CGPoint.zero
-        self.createView(label.bounds.size.width, label.bounds.size.height, matrix[0].count, matrix.count)
+    fileprivate func displayAsciiArt(_ matrix: [[String]]) {
+        self.currentView?.removeFromSuperview()
+        self.currentView = Canvas(itemSize: 10, symbolsMatix: matrix)
+        self.scrollView.addSubview(currentView!)
+        self.scrollView.contentSize = self.currentView!.frame.size
+        self.updateZoomSettings(animated: true)
     }
-    
-    func createView(_ width: CGFloat,_ height: CGFloat,_ numberOfItemInRow: Int,_ numberOfItemInColumn: Int) {
-        print("image size \(numberOfItemInRow)x\(numberOfItemInColumn)")
-        self.width = width
-        self.height = height
-        let itemWidth = width / CGFloat(numberOfItemInRow)
-        let itemHeight = height / CGFloat(numberOfItemInColumn)
-        self.itemWidth = itemWidth
-        self.itemHeight = itemHeight
-        self.pixels = []
-        for x in 0..<numberOfItemInRow {
-            pixels.append([])
-            for y in 0..<numberOfItemInColumn {
-                let view = UIView()
-                view.frame = CGRect(x: CGFloat(x) * itemWidth, y: CGFloat(y) * itemHeight, width: itemWidth, height: itemHeight)
-                view.backgroundColor = UIColor.clear
-                view.layer.borderWidth = 0.1
-                view.layer.borderColor = UIColor.black.cgColor
-                view.alpha = 0.5
-                self.currentLabel!.addSubview(view)
-                self.pixels[x].append(view)
-            }
-        }
-        print("\(self.pixels.count): \(self.pixels[0].count)")
-    }
-    @objc private func handleTap(sender: UIGestureRecognizer) {
-        print("tapped: \(sender.location(in: currentLabel))")
-        self.draw(atPoint: sender.location(in: currentLabel), Int(self.width), and: Int(self.height))
-    }
-    
-    @objc private func handleDrag(sender: UIGestureRecognizer) {
-        switch sender.state {
-        case .changed, .began:
-            print("changed & began: \(sender.location(in: currentLabel))")
-            self.draw(atPoint: sender.location(in: currentLabel), Int(self.width), and: Int(self.height))
-        case .ended:
-            print("End")
-        default: break
-        }
-    }
-    
     // MARK: - Zooming support
     
     fileprivate func configureZoomSupport() {
@@ -173,8 +111,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: - UIScrollViewDelegate
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        setCenterScrollView(scrollView, currentLabel)
-        return currentLabel
+        setCenterScrollView(scrollView, currentView)
+        return currentView
     }
     func scrollViewDidZoom(_ scrollView: UIScrollView) {
 //        currentLabel!.isUserInteractionEnabled = true
@@ -188,17 +126,5 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // adjust the center of view
         subView!.center = CGPoint(x: scrollView.contentSize.width * 0.5 + CGFloat(offsetX),y: scrollView.contentSize.height * 0.5 + CGFloat(offsetY))
     }
-  
-    private func draw(atPoint point: CGPoint,_ width: Int, and height: Int) {
-        let y = Int(point.y / self.itemHeight)
-        let x = Int(point.x / self.itemWidth)
-        guard y < height && x < width && y >= 0 && x >= 0 else { return }
-        pixels[x][y].backgroundColor = UIColor.red
-    }
 }
 
-extension ViewController: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
-}

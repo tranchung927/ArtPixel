@@ -19,6 +19,7 @@
 		54F4C6F11FFE6C0100F1511A /* kermit.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F4C6EE1FFE6C0100F1511A /* kermit.png */; };
 		54F4C6F21FFE6C0100F1511A /* monkey.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F4C6EF1FFE6C0100F1511A /* monkey.png */; };
 		54F4C6F31FFE6C0100F1511A /* batman.png in Resources */ = {isa = PBXBuildFile; fileRef = 54F4C6F01FFE6C0100F1511A /* batman.png */; };
+		E2F263FB2004AA65006E4DA1 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F263FA2004AA65006E4DA1 /* Canvas.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		54F4C6EE1FFE6C0100F1511A /* kermit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kermit.png; sourceTree = "<group>"; };
 		54F4C6EF1FFE6C0100F1511A /* monkey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = monkey.png; sourceTree = "<group>"; };
 		54F4C6F01FFE6C0100F1511A /* batman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batman.png; sourceTree = "<group>"; };
+		E2F263FA2004AA65006E4DA1 /* Canvas.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				54F4C6ED1FFE6BE700F1511A /* images */,
 				54F4C6D31FFE6B4B00F1511A /* AppDelegate.swift */,
 				54F4C6D51FFE6B4B00F1511A /* ViewController.swift */,
+				E2F263FA2004AA65006E4DA1 /* Canvas.swift */,
 				54F4C6E51FFE6B6600F1511A /* AsciiArtist.swift */,
 				54F4C6E71FFE6B8300F1511A /* AsciiPalette.swift */,
 				54F4C6E91FFE6B9900F1511A /* Pixel.swift */,
@@ -168,6 +171,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2F263FB2004AA65006E4DA1 /* Canvas.swift in Sources */,
 				54F4C6E61FFE6B6600F1511A /* AsciiArtist.swift in Sources */,
 				54F4C6E81FFE6B8300F1511A /* AsciiPalette.swift in Sources */,
 				54F4C6EA1FFE6B9900F1511A /* Pixel.swift in Sources */,

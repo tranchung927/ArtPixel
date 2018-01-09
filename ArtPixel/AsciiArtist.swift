@@ -14,24 +14,28 @@ class AsciiArtist {
     image:   UIImage,
     palette: AsciiPalette
     
-    var matrix = [[Double]]()
+//    var matrix = [[Double]]()
+//    var symbolsMatrix = [[String]]()
     
     init(_ image: UIImage, _ palette: AsciiPalette) {
         self.image   = image
         self.palette = palette
     }
     
-    func createAsciiArt() -> String {
+    func createAsciiArt() -> [[String]] {//-> String {
         let
         dataProvider = image.cgImage?.dataProvider,
         pixelData    = dataProvider?.data,
         pixelPointer = CFDataGetBytePtr(pixelData),
         intensities  = intensityMatrixFromPixelPointer(pixelPointer!),
-        symbolMatrix = symbolMatrixFromIntensityMatrix(intensities)
+        symbolsMatrix = matrixSymbol(intensities)//,
+//        symbolMatrix = symbolMatrixFromIntensityMatrix(intensities)
 //        print(intensities)
 //        print(symbolMatrix)
-        self.matrix = intensities
-        return symbolMatrix.joined(separator: "\n")
+//        self.matrix = intensities
+//        self.symbolsMatrix = symbolsMatrix
+        return symbolsMatrix
+//        return symbolMatrix.joined(separator: "\n")
     }
     
     fileprivate func intensityMatrixFromPixelPointer(_ pointer: PixelPointer) -> [[Double]] {
@@ -44,6 +48,12 @@ class AsciiArtist {
             pixelRow.map { pixel in
                 pixel.intensityFromPixelPointer(pointer)
             }
+        }
+    }
+    
+    fileprivate func matrixSymbol(_ matrix: [[Double]]) -> [[String]] {
+        return matrix.map { intensityRow in
+            intensityRow.map { self.symbolFromIntensity($0) }
         }
     }
     
