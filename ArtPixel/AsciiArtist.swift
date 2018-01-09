@@ -14,6 +14,8 @@ class AsciiArtist {
     image:   UIImage,
     palette: AsciiPalette
     
+    var matrix = [[Double]]()
+    
     init(_ image: UIImage, _ palette: AsciiPalette) {
         self.image   = image
         self.palette = palette
@@ -26,6 +28,9 @@ class AsciiArtist {
         pixelPointer = CFDataGetBytePtr(pixelData),
         intensities  = intensityMatrixFromPixelPointer(pixelPointer!),
         symbolMatrix = symbolMatrixFromIntensityMatrix(intensities)
+//        print(intensities)
+//        print(symbolMatrix)
+        self.matrix = intensities
         return symbolMatrix.joined(separator: "\n")
     }
     
@@ -34,6 +39,7 @@ class AsciiArtist {
         width  = Int(image.size.width),
         height = Int(image.size.height),
         matrix = Pixel.createPixelMatrix(width, height)
+//        print(matrix.count)
         return matrix.map { pixelRow in
             pixelRow.map { pixel in
                 pixel.intensityFromPixelPointer(pointer)
@@ -52,10 +58,9 @@ class AsciiArtist {
     fileprivate func symbolFromIntensity(_ intensity: Double) -> String {
         assert(0.0 <= intensity && intensity <= 1.0)
         
-        let
-        factor = palette.symbols.count - 1,
-        value  = round(intensity * Double(factor)),
-        index  = Int(value)
+        let factor = palette.symbols.count - 1,
+            value  = round(intensity * Double(factor)),
+            index  = Int(value)
         return palette.symbols[index]
     }
 }

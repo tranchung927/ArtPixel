@@ -22,6 +22,7 @@ struct Pixel {
         return (0..<height).map { row in
             (0..<width).map { col in
                 let offset = (width * row + col) * Pixel.bytesPerPixel
+//                print("\(row) \(col) \(offset)")
                 return Pixel(offset)
             }
         }

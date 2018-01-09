@@ -21,11 +21,16 @@ class AsciiPalette {
     }
     
     fileprivate func symbolsSortedByIntensityForAsciiCodes(_ codes: CountableClosedRange<Int>) -> [String] {
-        let
-        symbols          = codes.map { self.symbolFromAsciiCode($0) },
-                                     symbolImages     = symbols.map { UIImage.imageOfSymbol($0, self.font) },
-                                                                    whitePixelCounts = symbolImages.map { self.countWhitePixelsInImage($0) },
-                                                                                                        sortedSymbols    = sortByIntensity(symbols, whitePixelCounts)
+        let symbols          = codes.map { self.symbolFromAsciiCode($0) },
+            symbolImages     = symbols.map { UIImage.imageOfSymbol($0, self.font) },
+            whitePixelCounts = symbolImages.map { self.countWhitePixelsInImage($0) },
+            sortedSymbols    = sortByIntensity(symbols, whitePixelCounts)
+        
+        // Lọc ra bao nhiêu màu khác nhau( symbols khác nhau )
+//        print("symbols: \(symbols) \n")
+//        print("symbolImages: \(symbolImages) \n")
+//        print("whitePixelCounts: \(whitePixelCounts) \n")
+//        print("sortedSymbols: \(sortedSymbols) \n")
         return sortedSymbols
     }
     
